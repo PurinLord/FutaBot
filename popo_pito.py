@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
+import os
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import telegram.ext as telegram
 import logging
@@ -68,8 +69,9 @@ def error(bot, update, error):
 
 def main():
     # Create the EventHandler and pass it your bot's token.
-    token = open('.env').readline().strip()
-    updater = Updater(token) #aquí va el token
+
+    TOKEN = os.environ.get('TOKEN')
+    updater = Updater(TOKEN) #aquí va el token
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
