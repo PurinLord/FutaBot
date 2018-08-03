@@ -68,6 +68,7 @@ def main():
     # Create the EventHandler and pass it your bot's token.
 
     TOKEN = os.environ.get('TOKEN')
+    PORT = int(os.environ.get('PORT', '8443'))
     updater = Updater(TOKEN) #aquí va el token
 
     # Get the dispatcher to register handlers
@@ -90,9 +91,11 @@ def main():
     # Start the Bot
     updater.start_polling()
 
-    # Run the bot until the you presses Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
+
+    updater.start_webhook(listen="0.0.0.0",
+                          port=PORT,
+                          url_path=TOKEN)
+    updater.bot.set_webhook("https://futabot.herokuapp.com/" + TOKEN)
     updater.idle()
 
 if __name__ == '__main__':
