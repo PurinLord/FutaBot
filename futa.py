@@ -16,11 +16,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 ###########    funciones y otras cosas mías
-def dado20(x):
-    x = random.randint(1, 20) #int al azar entre 1 y 20
-    return x
-
-x = 0
+def dado20():
+    return random.randint(1, 20) #int al azar entre 1 y 20
 
 #poo = telegram.Emoji.PILE_OF_POO #emoji de popó
 poo = 'no hay popo'
@@ -52,7 +49,7 @@ def help(bot, update):
     bot.sendMessage(update.message.chat_id, text=ayuda)
     
 def dado(bot, update):
-    bot.sendMessage(update.message.chat_id, text=dado20(x) )
+    bot.sendMessage(update.message.chat_id, text=dado20() )
 
 def echo(bot, update):
     bot.sendMessage(update.message.chat_id, text=update.message.text)
