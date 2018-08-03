@@ -88,9 +88,9 @@ def main():
     # log all errors
     #dp.add_handler(ErrorHandler(error))
 
-    # Start the Bot
-    updater.start_polling()
+    ## Start the Bot
 
+    #updater.start_polling()
 
     updater.start_webhook(listen="0.0.0.0",
                           port=PORT,
