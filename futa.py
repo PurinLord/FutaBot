@@ -16,8 +16,14 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 ###########    funciones y otras cosas mías
-def dado20():
-    return random.randint(1, 20) #int al azar entre 1 y 20
+
+
+def dadon(n):
+    try:
+        return random.randint(1, int(n)) #int al azar entre 1 y 20
+    except Exception:
+        print(n)
+        return -1
 
 #poo = telegram.Emoji.PILE_OF_POO #emoji de popó
 poo = 'no hay popo'
@@ -45,14 +51,19 @@ cualquier cosa, escribeme: telegram.me/eliand
 def start(bot, update):
     bot.sendMessage(update.message.chat_id, text='Hola guapo!')
 
+
 def help(bot, update):
     bot.sendMessage(update.message.chat_id, text=ayuda)
-    
+
+
 def dado(bot, update):
-    bot.sendMessage(update.message.chat_id, text=dado20() )
+    val = update.message.text.split()[1]
+    bot.sendMessage(update.message.chat_id, text=dadon(val))
+
 
 def echo(bot, update):
     bot.sendMessage(update.message.chat_id, text=update.message.text)
+
 
 def popo(bot, update):
     bot.sendMessage(update.message.chat_id, text=poo)
@@ -83,7 +94,7 @@ def main():
     
 
     # on noncommand i.e message - echo the message on Telegram
-    dp.add_handler(MessageHandler(Filters.text, echo))
+    # dp.add_handler(MessageHandler(Filters.text, echo))
 
     # log all errors
     #dp.add_handler(ErrorHandler(error))
